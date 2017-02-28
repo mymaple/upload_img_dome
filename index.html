@@ -5,7 +5,7 @@
 		<meta charset="UTF-8">
 		<title>dome</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
-		<link rel="stylesheet" href="font/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="font/iconfont.css" />
 	</head>
 
 	<body>
@@ -25,12 +25,12 @@
 						<em class="img_add_b abs"></em>
 						<em class="img_add_a abs"></em>
 						<input type="hidden" class="upload_img_name" value="" />
-						<input type="file" class="upload_img_type" accept="image/*" onchange="toAddUploadImg(this);"/>
+						<input type="file" class="upload_img_type" accept="image/*" onchange="toAddUploadImg(this);" multiple="multiple"/>
 					</div>
 				</li>
 			</ul>
 		</div>
-		<img src="" alt="" class="lazy" />
+		<img src="" data-original="" class="lazy" />
 	</body>
 	
 </html>
@@ -55,7 +55,7 @@
 	        var itemli = 
 	        '<li>'+
 				'<div class="img_cell img_edit">'+
-					'<img src="'+src+'"/>'+
+					'<img src="'+src+'" data-original="img/grey.gif" class="lazy" />'+
 					'<div class="img_tools">'+
 						'<div class="img_tools_item left"><input type="file" class="upload_img_type" accept="image/*" onchange="toUpdateUploadImg(this);"/><i class="iconfont icon-edit"></i></div>'+
 						'<div class="img_tools_item right"><a onclick="toDeleteUploadImg(this);"><i class="iconfont icon-delete"></i></a></div>'+
@@ -75,7 +75,6 @@
         var fileList = $(elem)[0].files;
         //创建文件流获取文件地址
         var src = URL.createObjectURL(fileList[0]);
-        
         $(elem).parent().parent().prev().attr("src",src);
 	}
 	
